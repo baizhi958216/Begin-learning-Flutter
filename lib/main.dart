@@ -36,6 +36,13 @@ class DicePage extends StatefulWidget {
 
 class _DicePageState extends State<DicePage> {
   int leftDice = 1, rightDice = 1;
+  void changeAll() {
+    setState(() {
+      leftDice = Random().nextInt(6) + 1;
+      rightDice = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -57,6 +64,11 @@ class _DicePageState extends State<DicePage> {
               child: Image.asset('images/dice$leftDice.png'),
             ),
           ),
+          FloatingActionButton(
+              backgroundColor: Color.fromARGB(255, 48, 48, 48),
+              onPressed: () {
+                changeAll();
+              }),
           Expanded(
             child: TextButton(
               onPressed: () {
@@ -72,7 +84,7 @@ class _DicePageState extends State<DicePage> {
               },
               child: Image.asset('images/dice$rightDice.png'),
             ),
-          )
+          ),
         ],
       ),
     );
