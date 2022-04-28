@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/src/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-void main(List<String> args) {
-  runApp(XylophoneApp());
-}
+void main(List<String> args) => runApp(const XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   const XylophoneApp({Key? key}) : super(key: key);
@@ -15,111 +13,32 @@ class XylophoneApp extends StatelessWidget {
       player.play('note$number.wav');
     }
 
+    Expanded buildKey(int number, Color color) {
+      return Expanded(
+        child: TextButton(
+          onPressed: () => playSound(number),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(color)),
+          child: Container(),
+        ),
+      );
+    }
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                TextButton(
-                  onPressed: (() {
-                    playSound(1);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 255, 0, 0),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (() {
-                    playSound(2);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 255, 123, 0),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (() {
-                    playSound(3);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 251, 255, 0),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (() {
-                    playSound(4);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 0, 201, 7),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (() {
-                    playSound(5);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 110, 187, 155),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (() {
-                    playSound(6);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 0, 204, 255),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (() {
-                    playSound(7);
-                  }),
-                  child: Container(
-                    width: 120,
-                    height: 50,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 184, 74, 151),
-                    ),
-                  ),
-                ),
+                buildKey(1, const Color.fromARGB(255, 255, 0, 0)),
+                buildKey(2, const Color.fromARGB(255, 255, 123, 0)),
+                buildKey(3, const Color.fromARGB(255, 251, 255, 0)),
+                buildKey(4, const Color.fromARGB(255, 0, 201, 7)),
+                buildKey(5, const Color.fromARGB(255, 110, 187, 155)),
+                buildKey(6, const Color.fromARGB(255, 0, 204, 255)),
+                buildKey(7, const Color.fromARGB(255, 184, 74, 151)),
               ],
             ),
           ),
